@@ -1,15 +1,13 @@
 <script setup lang="ts">
-
+import Header from "./pages/header.vue";
+import Main from "./pages/main.vue";
 </script>
 
 <template>
   <div>
-   <h1>dfgdfgdf</h1>
-   <testvue></testvue>
+    <Header />
+    <Main />
   </div>
-
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
