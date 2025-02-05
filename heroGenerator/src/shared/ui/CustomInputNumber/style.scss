@@ -1,0 +1,80 @@
+.char {
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    // width: 150px;
+    height: 150px;
+
+    & .up {
+        width: 100%; /* Ширина кнопки */
+        height: 20px; /* Высота кнопки */
+        background-color: transparent; /* Прозрачный фон */
+        border: none; /* Без рамки */
+        position: relative; /* Для псевдоэлементов */
+        cursor: pointer; /* Указатель при наведении */
+        &::before {
+            content: ''; /* Создаем пустой контент для псевдоэлемента */
+            border-left: 15px solid transparent; /* Левый треугольник */
+            border-right: 15px solid transparent; /* Правый треугольник */
+            border-bottom: 20px solid green; /* Цвет нижней части треугольника (стрелка) */
+            position: absolute; /* Абсолютное позиционирование */
+            top: 0; /* Смещение от верха */
+            left: 50%; /* Горизонтальное центрирование */
+            transform: translateX(-50%); /* Центрируем по горизонтали */
+        }
+        &:hover {
+            opacity: 0.8;
+        }
+        &:disabled {
+            &::before {
+                border-bottom: 20px solid red;
+            }
+        }
+
+        &:focus {
+            outline: none; /* Убираем обводку при фокусировке */
+        }
+    }
+
+    & .down {
+        width: 100%; /* Ширина кнопки */
+        height: 20px; /* Высота кнопки */
+        background-color: transparent; /* Прозрачный фон */
+        border: none; /* Без рамки */
+        position: relative; /* Для псевдоэлементов */
+        cursor: pointer; /* Указатель при наведении */
+        &::before {
+            content: ''; /* Создаем пустой контент для псевдоэлемента */
+            border-left: 15px solid transparent; /* Левый треугольник */
+            border-right: 15px solid transparent; /* Правый треугольник */
+            border-top: 20px solid green; /* Цвет нижней части треугольника (стрелка) */
+            position: absolute; /* Абсолютное позиционирование */
+            bottom: 0; /* Смещение от верха */
+            left: 50%; /* Горизонтальное центрирование */
+            transform: translateX(-50%); /* Центрируем по горизонтали */
+        }
+        &:hover {
+            opacity: 0.8;
+        }
+        &:disabled {
+            &::before {
+                border-top: 20px solid red;
+            }
+        }
+
+        &:focus {
+            outline: none; /* Убираем обводку при фокусировке */
+        }
+    }
+
+    & input {
+        width: 100px; /* Ширина поля */
+        height: 100px; /* Высота поля */
+        border-radius: 50%; /* Делает углы круглыми */
+        border: 2px solid green; /* Цвет рамки */
+        padding: 10px; /* Внутренний отступ */
+        outline: none; /* Убирает стандартную рамку при фокусе */
+        text-align: center; /* Центрируем текст */
+        font-size: 29px;
+    }
+}

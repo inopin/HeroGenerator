@@ -19,6 +19,12 @@
           <Parameters />
         </AccordionContent>
       </AccordionPanel>
+      <AccordionPanel value="3">
+        <AccordionHeader>Навыки</AccordionHeader>
+        <AccordionContent>
+          <Skills/>
+        </AccordionContent>
+      </AccordionPanel>
     </Accordion>
   </main>
 </template>
@@ -31,6 +37,7 @@ import AccordionContent from "primevue/accordioncontent";
 import Prevue from "./prevue.vue";
 import Race from "./race.vue";
 import Parameters from "./parameters.vue";
+import Skills from "./skills.vue";
 </script>
 
 <style scoped>
