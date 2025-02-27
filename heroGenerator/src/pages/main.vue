@@ -2,7 +2,7 @@
   <main>
     <Accordion :value="['0']" multiple>
       <AccordionPanel value="0">
-        <AccordionHeader>Prevue</AccordionHeader>
+        <AccordionHeader>Preview</AccordionHeader>
         <AccordionContent>
           <Prevue />
         </AccordionContent>
