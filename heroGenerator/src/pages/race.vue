@@ -2,13 +2,14 @@
   <div class="wrapper">
     <div class="buttons">
       <Button
-        v-for="item in data"
+        v-for="item in raceList"
         :key="item.id"
         class="button !border-2"
         variant="outlined"
         label="item.label"
         :id="item.id"
         @mouseenter="raceSelect($event)"
+        @click="data.character.charRace.setRace(selected)"
       >
         <img :src="item.src" :alt="item.label" width="35" />
       </Button>
@@ -27,32 +28,21 @@
 <script setup lang="ts">
 import Button from "primevue/button";
 import Card from "primevue/card";
+import {rootData} from '../stores/rootStore.ts'
 import { ref } from "vue";
-const data = [
-  {
-    label: "Человек",
-    id: "human",
-    description: "Lorem ipsum Человек",
-    src: "src/assets/imgs/human.png",
-  },
-  {
-    label: "Эльф",
-    id: "elf",
-    description: "Lorem ipsum Эльф",
-    src: "src/assets/imgs/elf.png",
-  },
-  {
-    label: "Орк",
-    id: "orc",
-    description: "Lorem ipsum Орк",
-    src: "src/assets/imgs/orc.png",
-  },
-];
-const selected = ref(data[0]);
+
+const data = rootData()
+
+const raceList = data.character.charRace.raceList
+const chosenRace = data.character.charRace.chosenRace
+
+const selected = ref(chosenRace) || data.character.charRace.raceList[0];
 
 function raceSelect(event: any) {
-  selected.value = data.find((item) => item.id === event.target.id);
+  selected.value = raceList.find((item) => item.id === event.target.id);
 }
+
+
 </script>
 
 <style scoped>

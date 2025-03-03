@@ -34,10 +34,10 @@ import Accordion from "primevue/accordion";
 import AccordionPanel from "primevue/accordionpanel";
 import AccordionHeader from "primevue/accordionheader";
 import AccordionContent from "primevue/accordioncontent";
-import Prevue from "./prevue.vue";
-import Race from "./race.vue";
-import Parameters from "./parameters.vue";
-import Skills from "./skills.vue";
+import Prevue from "../pages/prevue.vue";
+import Race from "../pages/race.vue";
+import Parameters from "../pages/parameters.vue";
+import Skills from "../pages/skills.vue";
 </script>
 
 <style scoped>
