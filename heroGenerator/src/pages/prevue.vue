@@ -7,7 +7,7 @@
         <ul class="info-list">
           <li>
             <h2>Имя</h2>
-            <p>Иванов Иван</p>
+            <p>{{data.character.charName}}</p>
           </li>
           <li>
             <h2>Возраст</h2>
@@ -19,7 +19,7 @@
           </li>
           <li>
             <h2>Раса</h2>
-            <p>минотавр</p>
+            <p>{{data.character.charRace.chosenRace.label}}</p>
           </li>
         </ul>
         <h2>заметки</h2>
@@ -38,7 +38,11 @@
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import {rootData} from '../stores/rootStore.ts'
+
+  const data = rootData()
+</script>
 
 <style scoped>
 .container {

@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-    import { computed, ref, watch } from 'vue';
+    import { computed, ref, watchEffect } from 'vue';
     import './style.scss'
 
     interface Props {
@@ -49,10 +49,11 @@
 
     }
 
-    watch(count, (newValue)=>{
-        console.log('новое значение:',newValue)
+    watchEffect(()=>{
+        count.value = props.startValue
+        min.value = props.minVal
+        max.value = props.maxVal
     })
-
 
 
 </script>
