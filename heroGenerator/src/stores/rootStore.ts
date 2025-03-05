@@ -3,6 +3,7 @@ import { raceData } from './raceStore'
 import { paramsData } from './parametrsStore'
 
 export const rootData = defineStore('rootData', () => {
+    // название через use
     const character = {
         charName: 'Джонни Гопстопкинс',
         charRace: raceData(),
@@ -19,3 +20,5 @@ export const rootData = defineStore('rootData', () => {
         character,
     }
 })
+// собрать сторы в один   константы в корфиг
+// сделать моки для сервера

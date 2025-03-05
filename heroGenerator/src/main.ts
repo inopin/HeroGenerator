@@ -4,7 +4,7 @@ import './style.css'
 import App from './App.vue'
 import Aura from '@primevue/themes/aura'
 import PrimeVue from 'primevue/config'
-import Button from 'primevue/button'
+import Button from 'primevue/button' // не импортить глобально
 
 const pinia = createPinia()
 const app = createApp(App)

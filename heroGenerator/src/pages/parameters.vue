@@ -2,7 +2,7 @@
   <section class="char-wrapper">
 
     <CustomInputNumber
-    v-for="item in paramsList"
+    v-for="item in currentConfig"
     :id="item.id"
     :customClass ="'char'"
     :label ="item.label"
@@ -17,21 +17,14 @@
 
 <script setup lang="ts">
 
-import { ref, watch } from "vue";
+import { computed } from "vue";
 import CustomInputNumber from "../shared/ui/CustomInputNumber/CustomInputNumber.vue";
 import {rootData} from '../stores/rootStore.ts'
-import { storeToRefs } from 'pinia';
 
 const data = rootData()
-const { charParams } = storeToRefs(data.character);
-const paramsList = ref(charParams.value.paramsList);
 
-watch(
-  () => data.character.charParams.paramsList,
-  (newValue) => {
-    paramsList.value = charParams.value.paramsList
-  }
-);
+const currentConfig = computed(()=> data.character.charParams.paramsList)
+
 </script>
 
 <style scoped>
