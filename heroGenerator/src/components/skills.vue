@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import CustomInputNumber from "../shared/ui/CustomInputNumber/CustomInputNumber.vue";
+import CustomInputNumber from "@/shared/ui/CustomInputNumber/CustomInputNumber.vue";
 
 const config = {
     fight: {

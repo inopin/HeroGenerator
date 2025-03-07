@@ -1,6 +1,6 @@
 <template>
   <main>
-    <Accordion :value="['0']" multiple>
+    <Accordion :value="['1', '2']" multiple>
       <AccordionPanel value="0">
         <AccordionHeader>Prevue</AccordionHeader>
         <AccordionContent>
@@ -34,10 +34,18 @@ import Accordion from "primevue/accordion";
 import AccordionPanel from "primevue/accordionpanel";
 import AccordionHeader from "primevue/accordionheader";
 import AccordionContent from "primevue/accordioncontent";
-import Prevue from "../pages/prevue.vue";
-import Race from "../pages/race.vue";
-import Parameters from "../pages/parameters.vue";
-import Skills from "../pages/skills.vue";
+import Prevue from "@/components/prevue.vue";
+import Race from "@/components/race.vue";
+import Parameters from "@/components/parameters.vue";
+import Skills from "@/components/skills.vue";
+import { onMounted } from "vue";
+import { useRootData } from "../stores/rootStore";
+
+const data = useRootData()
+const {fetchData} = data
+onMounted(async () => {
+  await fetchData();
+});
 </script>
 
 <style scoped>
