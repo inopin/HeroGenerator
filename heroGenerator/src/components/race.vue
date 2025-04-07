@@ -1,19 +1,24 @@
 <template>
   <div class="wrapper">
-    <div class="buttons">
+    <div v-if="error">{{ error }}</div>
+    <div v-if="isLoading">Loading...</div>
+
+    <div class="buttons" >
       <Button
-        v-for="item in raceList"
+        v-for="item in charRace"
         :key="item.id"
         class="button !border-2"
         variant="outlined"
-        label="item.label"
+        :label="item.label"
         :id="item.id"
         @mouseenter="raceSelect($event)"
-        @click="data.character.charRace.setRace(selected)"
+        @click="setRace(selected)"
       >
-        <img :src="item.src" :alt="item.label" width="35" />
+        <img :src="item.iconSrc" :alt="item.label" width="35" />
       </Button>
     </div>
+
+
     <Card class="card">
       <template #title>{{ selected.label }}</template>
       <template #content>
@@ -28,20 +33,21 @@
 <script setup lang="ts">
 import Button from "primevue/button";
 import Card from "primevue/card";
-import {rootData} from '../stores/rootStore.ts'
+import {useRootData} from '@/stores/rootStore'
 import { ref } from "vue";
+import { storeToRefs } from 'pinia';
 
-const data = rootData()
+const data = useRootData()
+const {charRace,  error, isLoading,  } = storeToRefs(data)
+const { setRace, chosenRace} = data
 
-const raceList = data.character.charRace.raceList
-const chosenRace = data.character.charRace.chosenRace
+chosenRace.value = ref(charRace.value)
 
-const selected = ref(chosenRace) || data.character.charRace.raceList[0];
+const selected = ref(chosenRace) || charRace.value[0];
 
 function raceSelect(event: any) {
-  selected.value = raceList.find((item) => item.id === event.target.id);
+  selected.value = charRace.value.find((item: { id: number; }) => item.id === event.target.id);
 }
-
 
 </script>
 

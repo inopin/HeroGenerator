@@ -2,7 +2,7 @@
   <section>
     <h1>Превью</h1>
     <div class="container">
-      <img src="../assets/imgs/hero.jpg" alt="hero" width="240" />
+      <img src="@/assets/imgs/hero.jpg" alt="hero" width="240" />
       <div class="info">
         <ul class="info-list">
           <li>
@@ -19,7 +19,7 @@
           </li>
           <li>
             <h2>Раса</h2>
-            <p>{{data.character.charRace.chosenRace.label}}</p>
+            <p>{{chosenRace.label}}</p>
           </li>
         </ul>
         <h2>заметки</h2>
@@ -39,9 +39,11 @@
 </template>
 
 <script setup lang="ts">
-  import {rootData} from '../stores/rootStore.ts'
+  import {useRootData} from '@/stores/rootStore.ts'
+import { storeToRefs } from 'pinia'
 
-  const data = rootData()
+  const data = useRootData()
+  const {chosenRace} = storeToRefs(data)
 </script>
 
 <style scoped>
