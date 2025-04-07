@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { Race } from '@/shared/api/types/serviceTypes'
-import { Param } from '../shared/api/types/serviceTypes'
+import { Param } from '@/shared/api/types/serviceTypes'
 
 export const useRootData = defineStore('useRootData', () => {
     // название через use
@@ -9,6 +9,7 @@ export const useRootData = defineStore('useRootData', () => {
     const error = ref<string | null>(null)
     const charRace = ref<Race[]>([])
     const charParams = ref<Param[]>([])
+    const defaultParams = ref<Param[]>([])
     const chosenRace = ref<Race>({})
     const character = {
         charName: 'Джонни Гопстопкинс',
@@ -27,6 +28,7 @@ export const useRootData = defineStore('useRootData', () => {
             const data = await response.json()
             charRace.value = await data.races
             charParams.value = await data.params
+            defaultParams.value = await data.params
             chosenRace.value = await charRace.value[0]
         } catch (err) {
             error.value = 'Failed to fetch users'
@@ -36,12 +38,29 @@ export const useRootData = defineStore('useRootData', () => {
     }
 
     const setRace = (incomingData: any) => {
+        clearRace()
         chosenRace.value = incomingData
-        console.log(chosenRace.value.features) // сделать механизм обновления свойств параметров
+        setParams(chosenRace.value.features.paramsModify)
+    }
+    const clearRace = () => {
+        chosenRace.value = charRace.value[0]
     }
 
-    const setParams = () {
+    const setParams = (incomingArray: any) => {
+        charParams.value = defaultParams.value
+        if (incomingArray)  charParams.value = mergeArrays(charParams.value, incomingArray)
+       
 
+    }
+
+    function mergeArrays(defaultArr: any[], newArr: any[]) {  //вынести в какие либо утилиты.
+        return defaultArr.map((defaultItem) => {
+            const newItem = newArr.find((p: { id: any }) => p.id === defaultItem.id)
+            if (newItem) {
+                return { ...defaultItem, ...newItem }
+            }
+            return defaultItem
+        })
     }
 
     return {
@@ -56,4 +75,3 @@ export const useRootData = defineStore('useRootData', () => {
     }
 })
 // собрать сторы в один   константы в корфиг
-// сделать моки для сервера
